@@ -5,18 +5,7 @@ elf has.
 Strategy; Go through line by line. Run a total, and if the line is an empty
 space, reset the count.
 """
-import csv
-
-"""
-find_most_calories - reads a list of values and returns the highest value.
-"""
-def find_most_calories(list):
-    highest = 0
-    for line in list:
-        if line > highest:
-            highest = line
-    return highest
-    
+  
 """
 get_calories - Reads a csv file and converts it into a list.
     Parameters: 
@@ -26,23 +15,32 @@ get_calories - Reads a csv file and converts it into a list.
             carrying.
 """
 def get_calories(filename):
+    # make a list of total calories
     calorie_list = []
-    elf = 1
+    # open elves file
     with open(filename) as file:
-        reader = csv.reader(file)
+        # start initial calorie count
         total = 0
-        for row in reader:
-            if row == "":
-                elf += 1
+        for line in file:
+            # add calories
+            total += line
+            # if this is the last thing the elf is carrying...
+            if file.next() == "":
+                # add the total to the list of calories and reset count.
                 calorie_list.append(total)
                 total = 0
-            else:
-                total += int(row)
+        # The last elf won't have an empty line, so no file.next() trigger.
+        # Add that manually.
+        calorie_list.append(total)
+    # return the finished list.
     return calorie_list
+        
 
 def main():
+    # get the list of calories carried by each elf
     calories = get_calories("elves.csv")
-    answer = find_most_calories(calories)
+    # Determine which count is highest.
+    answer = calories[max]
     print(f"The elf carrying the most calories is carrying {answer} "
         "calories.\n")
 
