@@ -39,14 +39,14 @@ def get_calories(filename):
         # Add that manually.
         calorie_list.append(total)
     # Sort the complete list from greatest to smallest ammount of calories.
-    calorie_list = calorie_list.sort(reverse=True)
+    calorie_list.sort(reverse=True)
     # return the finished list.
     return calorie_list
         
 
 def main():
     # get the list of calories carried by each elf
-    calories = get_calories("Puzzle 1/elves.txt")
+    calories = get_calories("Puzzle 1/test_elves.txt")
     # Determine which count is highest.
     first = calories[0]
     second = calories[1]
