@@ -46,7 +46,7 @@ def get_calories(filename):
 
 def main():
     # get the list of calories carried by each elf
-    calories = get_calories("Puzzle 1/test_elves.txt")
+    calories = get_calories("Puzzle 1/elves.txt")
     # Determine which count is highest.
     first = calories[0]
     second = calories[1]
