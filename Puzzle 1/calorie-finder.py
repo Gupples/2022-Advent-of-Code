@@ -23,7 +23,7 @@ def get_calories(filename):
         total = 0
         for line in file:
             # add calories
-            total += line
+            total += int(line)
             # if this is the last thing the elf is carrying...
             if file.next() == "":
                 # add the total to the list of calories and reset count.
@@ -38,7 +38,7 @@ def get_calories(filename):
 
 def main():
     # get the list of calories carried by each elf
-    calories = get_calories("elves.csv")
+    calories = get_calories("Puzzle 1/test_elves.txt")
     # Determine which count is highest.
     answer = calories[max]
     print(f"The elf carrying the most calories is carrying {answer} "
