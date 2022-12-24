@@ -40,7 +40,7 @@ def get_calories(filename):
 
 def main():
     # get the list of calories carried by each elf
-    calories = get_calories("elves.txt")
+    calories = get_calories("Day 1/elves.txt")
     # Determine which count is highest.
     answer = max(calories)
     print(f"The elf carrying the most calories is carrying {answer} "
