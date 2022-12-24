@@ -31,7 +31,7 @@ def calculatePoints(filename):
     with open(filename) as file:
         for line in file:
             opp = line[0]
-            you = line[1]
+            you = line[2]
             tempScore = 0
             if(you == "X"):
                 tempScore = 1
