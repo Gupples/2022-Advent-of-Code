@@ -48,7 +48,7 @@ def display(score):
 
 def main():
     points = []
-    points = calculatePoints("test-guide.txt")
+    points = calculatePoints("Day 2/test-guide.txt")
     score = sum(points)
     display(score)
     
