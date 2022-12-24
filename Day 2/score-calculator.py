@@ -4,9 +4,9 @@ column is what your opponent will do, second is what you should do in response.
 Win = 6 points
 Draw = 3 points
 Loss = 0 points
-Rock is A & X, 1 point
-Paper is B & Y, 2 points
-Scizzors is C & Z, 3 points
+Rock is A and X, 1 point
+Paper is B and Y, 2 points
+Scizzors is C and Z, 3 points
 """
 # Return points according to who won.
 def determineWinner(opponent, you):
@@ -14,15 +14,17 @@ def determineWinner(opponent, you):
     draw = 3
     loss = 0
     # Opponent wins
-    if ((opponent == "A" & you == "Z") or (opponent == "B" & you == "X") or
-        (opponent == "C" & you == "Y")):
+    if ((opponent == "A" and you == "Z") or (opponent == "B" and you == "X") or
+        (opponent == "C" and you == "Y")):
         return loss
     # You win
-    elif ((you == "A" & opponent == "Z") or (you == "B" & opponent == "X") or
-        (you == "C" & opponent == "Y")):
+    elif ((opponent == "A" and you == "Y") or (opponent == "B" and you == "Z")
+        or (opponent == "C" and you == "X")):
         return win
-    elif (opponent == you):
-        return draw
+    # Draw
+    elif ((opponent == "A" and you == "X") or (opponent == "B" and you == "Y")
+        or (opponent == "C" and you == "Z")):
+                return draw
 
 
 def calculatePoints(filename):
@@ -39,7 +41,8 @@ def calculatePoints(filename):
                 tempScore = 2
             elif(you == "Z"):
                 tempScore = 3
-            tempScore += determineWinner(opp, you)
+            outcome = determineWinner(opp, you)
+            tempScore += outcome
             tempPoints.append(tempScore)
     return tempPoints
 
