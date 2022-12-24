@@ -50,13 +50,13 @@ def calculatePoints(filename):
             result = line[2]
             tempScore = 0
             if(result == "X"):
-                tempScore = 1
+                tempScore = 0
             elif(result == "Y"):
-                tempScore = 2
-            elif(result == "Z"):
                 tempScore = 3
-            choice = (opp, result)
-            tempPoints += choice
+            elif(result == "Z"):
+                tempScore = 6
+            choice = determinePoints(opp, result)
+            tempScore += choice
             tempPoints.append(tempScore)
     return tempPoints
 
