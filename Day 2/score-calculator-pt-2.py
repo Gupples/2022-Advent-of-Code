@@ -12,23 +12,34 @@ Scizzors is C and 3 points
 Z is scizzors and win.
 """
 # Return points according to who won.
-def determineWinner(opponent, you):
-    win = 6
-    draw = 3
-    loss = 0
-    # Opponent wins
-    if ((opponent == "A" and you == "Z") or (opponent == "B" and you == "X") or
-        (opponent == "C" and you == "Y")):
-        return loss
-    # You win
-    elif ((opponent == "A" and you == "Y") or (opponent == "B" and you == "Z")
-        or (opponent == "C" and you == "X")):
-        return win
-    # Draw
-    elif ((opponent == "A" and you == "X") or (opponent == "B" and you == "Y")
-        or (opponent == "C" and you == "Z")):
-                return draw
-
+def determinePoints(opponent, outcome):
+    rock = 1
+    paper = 2
+    scizzors = 3
+    # if opponent chooses rock
+    if opponent == "A":
+        if outcome == "X":
+            return scizzors
+        elif outcome == "Y":
+            return rock
+        elif outcome == "Z":
+            return paper
+    # if opponent chooses paper
+    elif opponent == "B":
+        if outcome == "X":
+            return rock
+        elif outcome == "Y":
+            return paper
+        elif outcome == "Z":
+            return scizzors
+    # if opponent chooses scizzors
+    elif opponent == "C":
+        if outcome == "X":
+            return paper
+        elif outcome == "Y":
+            return scizzors
+        elif outcome == "Z":
+            return rock
 
 def calculatePoints(filename):
     tempPoints = []
@@ -36,16 +47,16 @@ def calculatePoints(filename):
     with open(filename) as file:
         for line in file:
             opp = line[0]
-            you = line[2]
+            result = line[2]
             tempScore = 0
-            if(you == "X"):
+            if(result == "X"):
                 tempScore = 1
-            elif(you == "Y"):
+            elif(result == "Y"):
                 tempScore = 2
-            elif(you == "Z"):
+            elif(result == "Z"):
                 tempScore = 3
-            outcome = determineWinner(opp, you)
-            tempScore += outcome
+            choice = (opp, result)
+            tempPoints += choice
             tempPoints.append(tempScore)
     return tempPoints
 
@@ -54,7 +65,7 @@ def display(score):
 
 def main():
     points = []
-    points = calculatePoints("Day 2/guide.txt")
+    points = calculatePoints("Day 2/test-guide.txt")
     score = sum(points)
     display(score)
     
