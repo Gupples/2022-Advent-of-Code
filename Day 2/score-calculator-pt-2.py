@@ -1,12 +1,15 @@
 """
 Go through a sheet and calculate the score for rock, paper, scizzors. First
-column is what your opponent will do, second is what you should do in response.
+column is what your opponent will do, second is what the round should end as.
 Win = 6 points
 Draw = 3 points
 Loss = 0 points
-Rock is A and X, 1 point
-Paper is B and Y, 2 points
-Scizzors is C and Z, 3 points
+Rock is A and 1 point
+X is rock and loss.
+Paper is B and 2 points
+Y is paper and draw.
+Scizzors is C and 3 points
+Z is scizzors and win.
 """
 # Return points according to who won.
 def determineWinner(opponent, you):
