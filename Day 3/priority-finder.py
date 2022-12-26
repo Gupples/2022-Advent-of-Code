@@ -3,7 +3,6 @@ Each line is a rucksack, divided in two exactly down the middle. Find the item
 in common between the two halves, and find the priority total of them all. 
 Items are case-sensitive. a-z have priorities 1-26, and items A-Z have 
 priorities 27-52.
-Strategy: Find the priorities of each line and 
 """
 # Get a list of common items in each rucksack
 # Returns a list of common items.
