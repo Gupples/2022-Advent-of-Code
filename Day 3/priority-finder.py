@@ -6,45 +6,43 @@ priorities 27-52.
 Strategy: Find the priorities of each line and 
 """
 # Get a list of common items in each rucksack
-# Returns a list of lists of common items.
+# Returns a list of common items.
 def getItems(filename):
     # global within function
-    commonItems = []
+    items = []
     with open(filename) as file:
         for line in file:
-            # reset the list of common items
-            items = []
-            # reset the list of used items
-            usedItems = []
-            # Walk through each letter in the line
-            for letter in line:
-                # If it's not in the used letter index,
-                if letter not in usedItems:
-                    # add it.
-                    usedItems.append(letter)
-                # otherwise, it's a repeat item.
-                else:
-                    # if it's not already in the list of candidates,
-                    if letter not in items:
-                        # add it.
-                        items.append(letter)
-            commonItems.append(items)
-    return commonItems
+            pocket1 = line[:len(line) // 2]
+            # use .strip() for new line.
+            pocket2 = line[len(line) // 2:].strip()
 
-# Find the highest priority item in each rucksack. 
-# Returns a list of items with highest priority.
-def findItem(items):
-    pass
+            for item in pocket1:
+                if item in pocket2:
+                    if item not in items:
+                        items.append(item)
+    return items
+
 
 # calculate the total score for each priority item.
 # Returns the total score of each item's value.
 def getScores(items):
-    pass
+    totalScore = 0
+    for item in items:
+        score = 0
+        if item.islower():
+            score = ord(item) - 96
+        else:
+            # uppercase items get an additional 26 points
+            score = ord(item) - 64 + 26
+        totalScore += score
+    return totalScore
 
 def main():
+    # Find common items in the pockets
     items = getItems("Day 3/test-items.txt")
-    priorityItems = findItem(items)
-    score = getScores(priorityItems)
+    # get the total scores of common items
+    score = getScores(items)
+    # display common scores
     print(f"The total score of priority items is {score}")
 
 if __name__ == "__main__":
