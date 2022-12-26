@@ -51,7 +51,7 @@ def getScores(items):
 
 def main():
     # Find common items in the pockets
-    items = getGroups("Day 3/test-items.txt")
+    items = getGroups("Day 3/items.txt")
     # get the total scores of common items
     score = getScores(items)
     # display common scores
