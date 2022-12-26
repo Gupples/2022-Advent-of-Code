@@ -1,32 +1,38 @@
 """
-Each line is a rucksack, divided in two exactly down the middle. Find the item
-in common between the two halves, and find the priority total of them all. 
+Each line is a rucksack. Find the item in common between groups of 3 sacks,
+and find the priority total of them all. 
 Items are case-sensitive. a-z have priorities 1-26, and items A-Z have 
 priorities 27-52.
-Strategy: Find the priorities of each line and 
+
 """
 # Get a list of common items in each rucksack
 # Returns a list of common items.
-def getItems(filename):
-    # global within function
-    items = []
+def getGroups(filename):
+    groups = []
+    usedItems = []
+    commonItem = ""
+    elf1 = []
+    elf2 = []
+    i = 1
     with open(filename) as file:
         for line in file:
-            # items already used for sack.
-            usedItems = []
-            pocket1 = line[:len(line) // 2]
-            # use .strip() for new line.
-            pocket2 = line[len(line) // 2:].strip()
-            commonItem = ""
-            for item in pocket1:
-                if item in pocket2:
-                    commonItem = item
-                    # can't use items, or you ignore the same item if it comes
-                    # in a later sack.
-                    if commonItem not in usedItems:
-                        usedItems.append(commonItem)
-                        items.append(commonItem)
-    return items
+            if (i % 3 == 0):
+                i += 1
+                for item in line:
+                    if item in elf1 and item in elf2:
+                        commonItem = item
+                        groups.append(commonItem)
+                        break
+            else:
+                if (i % 3 == 1):
+                    elf1 = line
+                else:
+                    elf2 = line
+                i += 1
+                
+        
+        pass
+    return groups
 
 
 # calculate the total score for each priority item.
@@ -45,11 +51,11 @@ def getScores(items):
 
 def main():
     # Find common items in the pockets
-    items = getItems("Day 3/items.txt")
+    items = getGroups("Day 3/test-items.txt")
     # get the total scores of common items
     score = getScores(items)
     # display common scores
-    print(f"The total score of priority items is {score}")
+    print(f"The total score of groups is {score}")
 
 if __name__ == "__main__":
     main()
