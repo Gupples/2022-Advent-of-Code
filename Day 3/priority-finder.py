@@ -12,14 +12,20 @@ def getItems(filename):
     items = []
     with open(filename) as file:
         for line in file:
+            # items already used for sack.
+            usedItems = []
             pocket1 = line[:len(line) // 2]
             # use .strip() for new line.
             pocket2 = line[len(line) // 2:].strip()
-
+            commonItem = ""
             for item in pocket1:
                 if item in pocket2:
-                    if item not in items:
-                        items.append(item)
+                    commonItem = item
+                    # can't use items, or you ignore the same item if it comes
+                    # in a later sack.
+                    if commonItem not in usedItems:
+                        usedItems.append(commonItem)
+                        items.append(commonItem)
     return items
 
 
