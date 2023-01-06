@@ -31,6 +31,8 @@ def main():
 	    
 	print(text1)
 	print(line_break)
+	# VVV can't use this method. If used, any change to any one of the
+	# lines in it will apply to all.
 	array = [['1', '2', '3']]*4
 	print_array(array)
 	print('.')
