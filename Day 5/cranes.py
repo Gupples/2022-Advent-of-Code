@@ -11,19 +11,53 @@ Basically, for each stack, add 4.
 When moving crates from one array to another, use x = array1.pop[0]
 to store, and array2.insert(0, x) to deposit.
 """
+# get info about the graph
+def first_pass(file):
+    pass
+
+# process data
+def second_pass(file):
+    pass
+
+def get_stacks_info():
+
+    pass
+
+def get_number_of_stacks(line):
+    text = line.split()
+    print(f"Text = {text}")
+
+    return len(text)
+
 def get_stacks(filename):
     # find out how many lines contain the stacks.
-    # starting at -1 will give 0 index of label line
-    stack_lines = -1
+    stack_lines = 0
+    # find out when instructions start.
+    instructions_start = -1
     is_over = False
     with open(filename) as file:
-        # search for the label for stack 1.
-        for line in file:
-            if line[1] == "1":
-                is_over = True
+
+        # Search for end of diagram. To do so, search for the
+        # label line, using the lable for stack 1.
+        for text in file:
+            line = text.split(" ")
+            if line[0] != "\n":
+                if line[0] != "move" and line[1] == "1":
+                    index_line = text
+                    is_over = True
+                    instructions_start = stack_lines + 3
             if is_over == False:
                 stack_lines += 1
-        
+        print(stack_lines)
+        # Now that we have the grid, we need to find out how many 
+        # stacks there are.
+        # VVV debug code for confirming correct line VVV
+        # print(index_line)
+        stacks_length = get_number_of_stacks(index_line)
+        print(f"Number of stacks: {stacks_length}")
+        # Create array of lists
+        stacks = []
+        print(stacks)
 
 
     pass
